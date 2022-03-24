@@ -55,7 +55,7 @@ An Example Category with Embedded Spendings:
 
 /category/slug - page for showing specific shopping list
 
-![list](documentation/list-slug.png)
+![category](documentation/category-slug.png)
 
 ## Site map
 
@@ -79,10 +79,15 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
     * By using user authentication, the communication between client and server will be more secure, thus clients' privacy being protected
     * I'm going to be using passport for user authentication
 * (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
+    * Form validation in the client side is to check the form input before it reaches the server
+    * By using it, the user can get a response of the correctness of their input as soon as possible; Besides, it also protects the server and the database from malicious/wrong input
+    * I'm going to be using 
+* (1 point) External API -- Google Chart API
+    * API -- application programming interface, is a connection between computers or computer programs.
+    * By using API, I can achieve my goals (in this case, drawing charts) more easily and more conconvenient.
+    * I'm going to be using Google Chart api to visualization some information on my website.
 
-9 points total out of 8 required points
+10 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
@@ -90,8 +95,6 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of_)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-
+1. [passport.js authentication docs](http://passportjs.org/docs)
+2. [google chart developers docs](https://developers.google.com/chart)
 

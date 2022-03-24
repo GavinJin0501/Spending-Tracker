@@ -39,8 +39,8 @@ An Example Category with Embedded Items:
 
 
 ## [Link to Commented First Draft Schema](db.js) 
-
-```javascript
+![Alt text](./db.js?raw=true "Optional Title")
+<!-- ```javascript
 const User = new mongoose.Schema({
     username: {type: String, required: true, maxLength: 15},
     hash: {type: String, required: true},
@@ -59,7 +59,7 @@ const Category = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref:'User', required: true},
     name: {type: String, required: true},
     items: [Item]
-});
+}); -->
 ```
 
 ## Wireframes

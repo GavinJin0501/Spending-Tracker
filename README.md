@@ -23,7 +23,7 @@ An Example User:
 {
     username: "shannonshopper",
     hash: , // a password hash
-    categories: ["Food", "Entertainment", ...] // an array of references to List documents
+    categories: ["Food", "Entertainment", ...] // an array of references to Category documents
 }
 ```
 
@@ -34,29 +34,26 @@ An Example Category with Embedded Spendings:
     user: // a reference to a User object
     name: "Food",
     spendings: [
-      { date: "2022-03-22 15:24:38", amount: 34.2, notes: "my lunch"},
-      { date: "2022-03-23 15:24:38", amount: 50.0, notes: "mt dinner"}
+        { date: "2022-03-22 15:24:38", amount: 34.2, notes: "my lunch"},
+        { date: "2022-03-23 15:24:38", amount: 50.0, notes: "mt dinner"}
     ]
 }
 ```
 
 
 ## [Link to Commented First Draft Schema](db.js) 
-![Alt text](./documentation/FirstDraftSchema.png)
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
+/category/create - page for creating a new spending category
 
-/list/create - page for creating a new shopping list
+![category create](documentation/category-create.png)
 
-![list create](documentation/list-create.png)
+/category - page for showing all shopping catrgories
 
-/list - page for showing all shopping lists
+![category](documentation/category.png)
 
-![list](documentation/list.png)
-
-/list/slug - page for showing specific shopping list
+/category/slug - page for showing specific shopping list
 
 ![list](documentation/list-slug.png)
 

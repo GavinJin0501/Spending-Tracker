@@ -43,6 +43,7 @@ An Example Category with Embedded Spendings:
 
 ## [Link to Commented First Draft Schema](db.js) 
 
+
 ## Wireframes
 
 /category/create - page for creating a new spending category
@@ -57,11 +58,11 @@ An Example Category with Embedded Spendings:
 
 ![category](documentation/category-slug.png)
 
+
 ## Site map
 
-(__TODO__: draw out a site map that shows how pages are related to each other_)
+TO DO !!!
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
 
 ## User Stories or Use Cases
 
@@ -72,22 +73,23 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 5. as a user, I can view all my spendings in either a specific category or in all categories as a whole, with the ability to: select date range, rank them by date or amount
 6. as a user, I can add, edit, or delete spendings to an existing category
 
+
 ## Research Topics
 
 * (5 points) Integrate user authentication
     * User authentication is the process of determining whehter or not users are who they claim to be
     * By using user authentication, the communication between client and server will be more secure, thus clients' privacy being protected
     * I'm going to be using passport for user authentication
-* (4 points) Perform client side form validation using a JavaScript library
+* (3 points) Perform client side form validation using a JavaScript library
     * Form validation in the client side is to check the form input before it reaches the server
     * By using it, the user can get a response of the correctness of their input as soon as possible; Besides, it also protects the server and the database from malicious/wrong input
-    * I'm going to be using 
+    * I'm going to be using jbvalidator
 * (1 point) External API -- Google Chart API
     * API -- application programming interface, is a connection between computers or computer programs.
     * By using API, I can achieve my goals (in this case, drawing charts) more easily and more conconvenient.
     * I'm going to be using Google Chart api to visualization some information on my website.
 
-10 points total out of 8 required points
+9 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
@@ -96,5 +98,6 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 ## Annotations / References Used
 
 1. [passport.js authentication docs](http://passportjs.org/docs)
-2. [google chart developers docs](https://developers.google.com/chart)
+2. [jbvalidator docs](https://github.com/emretulek/jbvalidator)
+3. [google chart developers docs](https://developers.google.com/chart)
 

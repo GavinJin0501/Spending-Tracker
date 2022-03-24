@@ -9,31 +9,33 @@ Spending Tracker is a web app that will allow users to keep track of their daliy
 
 ## Data Model
 
-The application will store Users, Categories and Items
+The application will store Users, Categories and Spendings.
 
-* users can have multiple categories (via references)
-* each category can have multiple items (by embedding)
+* Users: user obj, storing the username, password hash, and the types of spending the user have
+    * Users can have multiple categories (via references)
+* Categories: category obj, storing the user reference, name of the category, and the 
+    * each category can have multiple items (by embedding)
 
 An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
-  hash: , // a password hash
-  categories: ["Food", "Entertainment", ...] // an array of references to List documents
+    username: "shannonshopper",
+    hash: , // a password hash
+    categories: ["Food", "Entertainment", ...] // an array of references to List documents
 }
 ```
 
-An Example Category with Embedded Items:
+An Example Category with Embedded Spendings:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Food",
-  items: [
-    { date: "2022-03-22 15:24:38", amount: 34.2, notes: "my lunch"},
-    { date: "2022-03-23 15:24:38", amount: 50.0, notes: "mt dinner"}
-  ]
+    user: // a reference to a User object
+    name: "Food",
+    spendings: [
+      { date: "2022-03-22 15:24:38", amount: 34.2, notes: "my lunch"},
+      { date: "2022-03-23 15:24:38", amount: 50.0, notes: "mt dinner"}
+    ]
 }
 ```
 

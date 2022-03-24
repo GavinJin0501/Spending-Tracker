@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 
 
 const User = new mongoose.Schema({
-  username: {type: String, required: true, maxLength: 15},
-  hash: {type: String, required: true},
-  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
+  	username: {type: String, required: true, maxLength: 15},
+  	hash: {type: String, required: true},
+  	categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
 });
 
 
-const Item = new mongoose.Schema({
+const Spending = new mongoose.Schema({
 	date: {type: Date, required: true},
 	amount: {type: Number, required: true},
 	notes: {type: String, maxLength: 50}
@@ -18,9 +18,9 @@ const Item = new mongoose.Schema({
 
 
 const Category = new mongoose.Schema({
-  user: {type: mongoose.Schema.Types.ObjectId, ref:'User', required: true},
-  name: {type: String, required: true},
-  items: [Item]
+  	user: {type: mongoose.Schema.Types.ObjectId, ref:'User', required: true},
+  	name: {type: String, required: true},
+  	items: [Spending]
 });
 
 
@@ -28,7 +28,7 @@ const Category = new mongoose.Schema({
 // List.plugin(URLSlugs('name'));
 
 mongoose.model('User', User);
-mongoose.model('List', Category);
-mongoose.model('Item', Item);
+mongoose.model('Category', Category);
+mongoose.model('Spending', Spending);
 mongoose.connect('mongodb://localhost/spendingtrackerdb');
 

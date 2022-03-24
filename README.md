@@ -1,12 +1,6 @@
-<!-- The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines. -->
-
-<!-- (__TODO__: your project name_) -->
-
 # Spending Tracker 
 
 ## Overview
-
-<!-- (__TODO__: a brief one or two paragraph, high-level description of your project_) -->
 
 Many people want to keep track of their daily spendings. However, doing that with pen & paper or regular notes is way too difficult and inconvenient. Therefore, that's where Spending Tracker comes in!
 
@@ -15,14 +9,10 @@ Spending Tracker is a web app that will allow users to keep track of their daliy
 
 ## Data Model
 
-<!-- (__TODO__: a description of your application's data and their relationships to each other_)  -->
-
 The application will store Users, Categories and Items
 
 * users can have multiple categories (via references)
 * each category can have multiple items (by embedding)
-
-<!-- (__TODO__: sample documents_) -->
 
 An Example User:
 
@@ -41,10 +31,9 @@ An Example Category with Embedded Items:
   user: // a reference to a User object
   name: "Food",
   items: [
-    { date: "2022-03-23 15:24:38", amount: 34.2, notes: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+    { date: "2022-03-22 15:24:38", amount: 34.2, notes: "my lunch"},
+    { date: "2022-03-23 15:24:38", amount: 50.0, notes: "mt dinner"}
+  ]
 }
 ```
 

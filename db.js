@@ -31,4 +31,3 @@ mongoose.model('User', User);
 mongoose.model('Category', Category);
 mongoose.model('Spending', Spending);
 mongoose.connect('mongodb://localhost/spendingtrackerdb');
-

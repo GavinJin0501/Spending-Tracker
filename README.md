@@ -23,7 +23,7 @@ An Example User:
 {
     username: "shannonshopper",
     hash: , // a password hash
-    categories: ["Food", "Entertainment", ...] // an array of references to Category documents
+    categories: // an array of references to Category documents
 }
 ```
 
@@ -46,17 +46,18 @@ An Example Category with Embedded Spendings:
 
 ## Wireframes
 
-/category/create - page for creating a new spending category
-
-![category create](documentation/category-create.png)
-
 /category - page for showing all shopping catrgories
 
-![category](documentation/category.png)
+![category](documentation/category.pdf)
 
-/category/slug - page for showing specific shopping list
+/category/slug - page for showing specific shopping category
 
-![category](documentation/category-slug.png)
+![category](documentation/category-slug.pdf)
+
+/category/create - page for creating a new spending category
+
+![category create](documentation/category-create.pdf)
+
 
 
 ## Site map
@@ -87,9 +88,13 @@ TO DO !!!
 * (1 point) External API -- Google Chart API
     * API -- application programming interface, is a connection between computers or computer programs.
     * By using API, I can achieve my goals (in this case, drawing charts) more easily and more conconvenient.
-    * I'm going to be using Google Chart api to visualization some information on my website.
+    * I'm going to be using Google Chart api to visualize some information on my website.
+* (1 point) External API -- OpenWeather API
+    * API -- application programming interface, is a connection between computers or computer programs.
+    * By using API, I can achieve my goals (in this case, showing today's weather) more easily and more conconvenient.
+    * I'm going to be using OpenWeather api to display today's the weather on my website.
 
-9 points total out of 8 required points
+10 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
@@ -100,4 +105,5 @@ TO DO !!!
 1. [passport.js authentication docs](http://passportjs.org/docs)
 2. [jbvalidator docs](https://github.com/emretulek/jbvalidator)
 3. [google chart developers docs](https://developers.google.com/chart)
+4. [OpenWeather docs](https://openweathermap.org/current)
 

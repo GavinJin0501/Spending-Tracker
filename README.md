@@ -39,28 +39,7 @@ An Example Category with Embedded Items:
 
 
 ## [Link to Commented First Draft Schema](db.js) 
-![Alt text](./db.js?raw=false "Optional Title")
-<!-- ```javascript
-const User = new mongoose.Schema({
-    username: {type: String, required: true, maxLength: 15},
-    hash: {type: String, required: true},
-    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
-});
-
-
-const Item = new mongoose.Schema({
-    date: {type: Date, required: true},
-    amount: {type: Number, required: true},
-    notes: {type: String, maxLength: 50}
-});
-
-
-const Category = new mongoose.Schema({
-    user: {type: mongoose.Schema.Types.ObjectId, ref:'User', required: true},
-    name: {type: String, required: true},
-    items: [Item]
-}); -->
-```
+![Alt text](/../documentation/FirstDraftSchema.png?raw=true "Optional Title")
 
 ## Wireframes
 

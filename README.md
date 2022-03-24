@@ -65,14 +65,12 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## User Stories or Use Cases
 
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
-
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can create a new spending category
+4. as a user, I can view all of the spending categories by default or created by myself
+5. as a user, I can view all my spendings in either a specific category or in all categories as a whole, with the ability to: select date range, rank them by date or amount
+6. as a user, I can add, edit, or delete spendings to an existing category
 
 ## Research Topics
 
@@ -84,7 +82,7 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
     * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
     * if you put in a number that's greater than 5, an error message will appear in the dom
 
-10 points total out of 8 required points
+9 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 

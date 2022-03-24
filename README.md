@@ -48,15 +48,15 @@ An Example Category with Embedded Spendings:
 
 /category - page for showing all shopping catrgories
 
-![category](documentation/category.pdf)
+![category](documentation/category.png)
 
 /category/slug - page for showing specific shopping category
 
-![category](documentation/category-slug.pdf)
+![category](documentation/category-slug.png)
 
 /category/create - page for creating a new spending category
 
-![category create](documentation/category-create.pdf)
+![category create](documentation/category-create.png)
 
 
 

@@ -39,7 +39,7 @@ An Example Category with Embedded Items:
 
 
 ## [Link to Commented First Draft Schema](db.js) 
-![Alt text](/../documentation/FirstDraftSchema.png?raw=true "Optional Title")
+![Alt text](./documentation/FirstDraftSchema.png?raw=true "Optional Title")
 
 ## Wireframes
 

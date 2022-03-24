@@ -1,28 +1,28 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
+<!-- The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines. -->
 
-(__TODO__: your project name_)
+<!-- (__TODO__: your project name_) -->
 
-# Shoppy Shoperson 
+# Spending Tracker 
 
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project_)
+<!-- (__TODO__: a brief one or two paragraph, high-level description of your project_) -->
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Many people want to keep track of their daily spendings. However, doing that with pen & paper or regular notes is way too difficult and inconvenient. Therefore, that's where Spending Tracker comes in!
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+Spending Tracker is a web app that will allow users to keep track of their daliy spendings. Users can register and login. Once they're logged in, they can create or view their (past) spendings, categorized by some default and customized types. For each category of the spendings that they have, they can add, edit, or delete items.
 
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other_) 
+<!-- (__TODO__: a description of your application's data and their relationships to each other_)  -->
 
-The application will store Users, Lists and Items
+The application will store Users, Categories and Items
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* users can have multiple categories (via references)
+* each category can have multiple items (by embedding)
 
-(__TODO__: sample documents_)
+<!-- (__TODO__: sample documents_) -->
 
 An Example User:
 
@@ -30,18 +30,18 @@ An Example User:
 {
   username: "shannonshopper",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  categories: ["Food", "Entertainment", ...] // an array of references to List documents
 }
 ```
 
-An Example List with Embedded Items:
+An Example Category with Embedded Items:
 
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
+  name: "Food",
   items: [
-    { name: "pancakes", quantity: "9876", checked: false},
+    { date: "2022-03-23 15:24:38", amount: 34.2, notes: false},
     { name: "ramen", quantity: "2", checked: true},
   ],
   createdAt: // timestamp

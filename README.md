@@ -19,7 +19,7 @@ An Example User:
 ```javascript
 {
   username: "shannonshopper",
-  hash: // a password hash,
+  hash: , // a password hash
   categories: ["Food", "Entertainment", ...] // an array of references to List documents
 }
 ```

@@ -1,12 +1,14 @@
-const mongoose = require('mongoose'),
-	URLSlugs = require('mongoose-url-slugs'),
-  passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require('mongoose');
+const URLSlugs = require('mongoose-url-slugs');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 
 const User = new mongoose.Schema({
-  // username, password
-  lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
+  username: {type: String, required: True, maxLength: 15},
+  hash: {type: String},
+  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
 });
+
 
 const Item = new mongoose.Schema({
 	name: {type: String, required: true},
@@ -17,7 +19,7 @@ const Item = new mongoose.Schema({
 });
 
 
-const List = new mongoose.Schema({
+const Category = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   name: {type: String, required: true},
 	createdAt: {type: Date, required: true},

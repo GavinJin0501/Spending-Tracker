@@ -14,7 +14,8 @@ The application will store Users, Categories and Spendings.
 * Users: user obj, storing the username, password hash, and the types of spending the user have
     * Users can have multiple categories (via references)
 * Categories: category obj, storing the user reference, name of the category, and the 
-    * each category can have multiple items (by embedding)
+    * each category can have multiple spendings (by embedding)
+* Spendings: spendign obj, storing each single spending including date, money amount, and notes
 
 An Example User:
 

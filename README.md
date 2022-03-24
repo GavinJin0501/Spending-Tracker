@@ -62,7 +62,7 @@ An Example Category with Embedded Spendings:
 
 ## Site map
 
-TO DO !!!
+![site map](documentation/site-map.png)
 
 
 ## User Stories or Use Cases

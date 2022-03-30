@@ -1,45 +1,56 @@
+// pre-run files
+require("./db.js");
 
-require('./db');
-require('./auth');
 
-const passport = require('passport');
-const express = require('express');
-const path = require('path');
-
-const routes = require('./routes/index');
-const list = require('./routes/list');
-const listItem = require('./routes/list-item');
-
-const app = express();
-
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
-// enable sessions
+// require modules
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
 const session = require('express-session');
+
+
+// define global variables
+const app = express();
+const User = mongoose.model("User");
 const sessionOptions = {
     secret: 'secret cookie thang (store this elsewhere!)',
     resave: true,
       saveUninitialized: true
 };
-app.use(session(sessionOptions));
 
+
+// set engine for app
+app.set("view engine", "hbs");
+
+
+// use middlewares
+app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// passport setup
-app.use(passport.initialize());
-app.use(passport.session());
 
-// make user data available to all templates
-app.use((req, res, next) => {
-  res.locals.user = req.user;
-  next();
+// handle routes
+app.get("/", (req, res) => {
+    res.render("index");
 });
 
-app.use('/', routes);
-app.use('/list', list);
-app.use('/list-item', listItem);
+app.get("/login", (req, res) => {
+    res.render("login");
+});
+
+app.get("/register", (req, res) => {
+    res.render("register");
+});
+
+app.post("/login", (req, res) => {
+    console.log(req.body.username, req.body.password);
+    res.redirect("/");
+});
+
+app.post("/register", (req, res) => {
+    console.log(req.body);
+    res.redirect("/");
+});
+
 
 app.listen(3000);

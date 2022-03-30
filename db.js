@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-// const URLSlugs = require('mongoose-url-slugs');
-// const passportLocalMongoose = require('passport-local-mongoose');
 
 
 const User = new mongoose.Schema({
@@ -23,9 +21,6 @@ const Category = new mongoose.Schema({
   	spendings: [Spending]
 });
 
-
-// User.plugin(passportLocalMongoose);
-// List.plugin(URLSlugs('name'));
 
 mongoose.model('User', User);
 mongoose.model('Category', Category);

@@ -1,6 +1,45 @@
-<form method="POST" action="">
-	<div class='form-row'><label>Username:</label> <input name="username" type="text"></div>
-	<div class='form-row'><label>Password:</label> <input name="password" type="password"></div>
-	<div class='form-row'><input type="submit" value="Register"></div>
-	<div class='form-row'>Already have an account? <a href="/login">Login</a>.</div>
-</form>
+<div class="wrapper">
+    <div class="center-box">
+        <div id="index-title">Create Your Account</div>
+        <form action="" method="POST" id="lr-form" onsubmit="return simpleCheck()">
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" name="username" placeholder="<= 15 characters" required autofocus></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="text" name="password" required autofocus id="pwd1"></td>
+                </tr>
+                <tr>
+                    <td>Pwd again:</td>
+                    <td><input type="text" name="password2nd" required autofocus id="pwd2"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Register" style="font-size: 1vw;"></td>
+                </tr>
+            </table>
+            
+        </form>
+        <div id="login-error">{{error}}</div>
+        <div id="btns-wrapper">
+            <a href="/"><button class="index-btns">To Home</button></a>
+            <a href="/login"><button class="index-btns">To Login</button></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function simpleCheck(form) {
+        const pwd1 = document.querySelector("#pwd1");
+        const pwd2 = document.querySelector("#pwd2");
+        if (pwd1.value !== pwd2.value) {
+            alert("Password double check failed!");
+            return false;
+        } else {
+            pwd2.value = "";
+            return true;
+        }
+    }
+</script>

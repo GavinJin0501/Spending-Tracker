@@ -1,28 +1,13 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title></title>
-<link rel='stylesheet' href='/stylesheets/style.css'>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spending Tracker</title>
+    <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
 <body>
-<div id="wrapper">
-<div id="hd">
-{{#if user}}
-<div>Logged in as: {{user.username}} (<a href="/logout">Logout</a>)
-</div> 
-{{/if}}
-	<h1>Shoppy Shoperson</h1>
-</div>
-<div id="bd">
-{{{body}}}
-</div>
-<div id="ft">
-{{#if user}}
-	<a href="/">Home</a> | 
-	<a href="/list/">All Lists</a> | 
-	<a href="/list/create">Create a New List</a>
-{{/if}}
-</div>
-</div>
+    {{{body}}}
 </body>
 </html>

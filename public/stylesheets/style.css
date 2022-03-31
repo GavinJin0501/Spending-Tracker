@@ -83,3 +83,9 @@ body {
 #lr-submit {
     font-weight: bold;
 }
+
+
+#error {
+    color:antiquewhite;
+    text-align: right;
+}

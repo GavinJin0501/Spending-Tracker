@@ -1,5 +1,7 @@
 // pre-run files
+require('dotenv').config({path: __dirname + '/.env'});
 require("./db.js");
+require("./auth.js");
 
 
 // require modules
@@ -7,15 +9,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const session = require('express-session');
+const passport = require("passport");
+const indexRoutes = require("./routes/indexRoutes");
+const homeRoutes = require("./routes/homeRoutes");
 
 
 // define global variables
 const app = express();
-const User = mongoose.model("User");
 const sessionOptions = {
-    secret: 'secret cookie thang (store this elsewhere!)',
-    resave: true,
-      saveUninitialized: true
+    secret: (process.env.secret) ? process.env.secret : "Guess Wat it is",
+    resave: false,
+    saveUninitialized: false
 };
 
 
@@ -24,33 +28,15 @@ app.set("view engine", "hbs");
 
 
 // use middlewares
-app.use(session(sessionOptions));
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
+app.use(session(sessionOptions));
+app.use(passport.authenticate("session"));
 
 
-// handle routes
-app.get("/", (req, res) => {
-    res.render("index");
-});
-
-app.get("/login", (req, res) => {
-    res.render("login");
-});
-
-app.get("/register", (req, res) => {
-    res.render("register");
-});
-
-app.post("/login", (req, res) => {
-    console.log(req.body.username, req.body.password);
-    res.redirect("/");
-});
-
-app.post("/register", (req, res) => {
-    console.log(req.body);
-    res.redirect("/");
-});
+// use router middlewares
+app.use("/", indexRoutes);
+app.use("/home", homeRoutes);
 
 
 app.listen(3000);

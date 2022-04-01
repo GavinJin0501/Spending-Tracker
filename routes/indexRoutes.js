@@ -9,7 +9,6 @@ const router = express.Router();
 const User = mongoose.model("User");
 const Category = mongoose.model("Category");
 
-
 // handle routes
 router.get("/", (req, res) => {
     res.render("index");
@@ -37,15 +36,12 @@ router.post("/register", async (req, res) => {
         if (!existingUser) {
             // hash: $argon2i$v=19$m=4096,t=3,p=1$z+t8lqXpDjhIJt14Lwf0NQ$JfUcW6NfQH12lPU+D67/u5rikHJyyk6mYCYKhjKcfbU
             const hash = await argon2.hash(password);
-            let savedUser = await new User({username: username, hash: hash}).save();
-            const savedFood = await new Category({user: savedUser["_id"], name: "Food"}).save();
-            const savedEntertainment = await new Category({user: savedUser["_id"], name: "Entertainment"}).save();
-            const savedTransportation = await new Category({user: savedUser["_id"], name: "Transportation"}).save();
-            const savedShopping = await new Category({user: savedUser["_id"], name: "Shopping"}).save();
+            const savedUser = await new User({username: username, hash: hash, categories: ["Food", "Entertainment", "Transportation", "Shopping"]}).save();
+            await new Category({user: savedUser["_id"], name: "Food"}).save();
+            await new Category({user: savedUser["_id"], name: "Entertainment"}).save();
+            await new Category({user: savedUser["_id"], name: "Transportation"}).save();
+            await new Category({user: savedUser["_id"], name: "Shopping"}).save();
             
-            savedUser.categories = [savedFood["_id"], savedEntertainment["_id"], savedTransportation["_id"], savedShopping["_id"]];
-            savedUser = await savedUser.save();
-
             const user = {username: savedUser.username, categories: savedUser.categories};
             req.login(user, function(err) {
                 if (err) {res.redirect("/");}

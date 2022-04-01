@@ -89,3 +89,7 @@ body {
     color:antiquewhite;
     text-align: right;
 }
+
+input[type=submit] {
+    cursor: pointer;
+}

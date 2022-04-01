@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const User = new mongoose.Schema({
   	username: {type: String, required: true, maxLength: 15},
   	hash: {type: String, required: true},
-  	categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-	category_names: [String]
+	categories: [String]
 });
 
 

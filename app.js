@@ -21,6 +21,10 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: false
 };
+const unauthPath = indexRoutes.stack.map(r => r = r.route.path);
+const authPath = homeRoutes.stack.map(r => r = (r.route.path !== "/") ? "/home" + r.route.path : "/home");
+console.log("unauth:", unauthPath);
+console.log("auth:", authPath);
 
 
 // set engine for app
@@ -28,10 +32,31 @@ app.set("view engine", "hbs");
 
 
 // use middlewares
+app.use((req, res, next) => {   // remove trailing slash -- ref: https://searchfacts.com/url-trailing-slash/
+	if (req.path[-1] === '/' && req.path.length > 1) {
+		const query = req.url.slice(req.path.length);
+		res.redirect(301, req.path.slice(0, -1) + query);
+	} else {
+		next();
+	}
+});
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(session(sessionOptions));
 app.use(passport.authenticate("session"));
+app.use((req, res, next) => {   // restrict access
+    if (req.isAuthenticated() && unauthPath.includes(req.path)) {
+        res.redirect("/home");
+    } else if (!req.isAuthenticated() && authPath.includes(req.path)) {
+        res.redirect("/");
+    } else {
+        next();
+    }
+});
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
 
 
 // use router middlewares

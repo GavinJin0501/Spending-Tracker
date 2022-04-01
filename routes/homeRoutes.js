@@ -9,10 +9,12 @@ const Category = mongoose.model("Category");
 
 
 router.get("/", (req, res) => {
-    const data = req.session.passport.user;
-    res.render("home", data);
+    res.render("home");
 });
 
-
+router.post('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = router;

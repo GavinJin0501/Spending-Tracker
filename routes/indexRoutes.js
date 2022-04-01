@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 const argon2 = require("argon2");
 const passport = require("passport");
-const { nextTick } = require("process");
 
 
 const router = express.Router();

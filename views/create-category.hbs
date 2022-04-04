@@ -1,0 +1,29 @@
+<div id="home-wrapper">
+    <div id="index-title" style="padding-top: 1vh; margin-bottom: 5vh;">Create a New Category</div>
+    <div id="navbar">
+        <form class="link-form" action="/home" method="GET">
+            <input type="submit" value="Home">
+        </form>
+        <form class="link-form" action="/home/create-category" method="GET">
+            <input type="submit" value="Create a New Caregory">
+        </form>
+        <form class="link-form" action="/home/logout" method="POST">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+    <div id="form-wrapper">
+        <form action="/home/create-category" method="POST" id="lr-form">
+            <table>
+                <tr>
+                    <td>New Category Name:</td>
+                    <td><input type="text" name="name" required autofocus></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Create" style="font-size: 1vw;"></td>
+                </tr>
+            </table>
+            <div id="error">{{error}}</div>
+        </form>
+    </div>
+</div>

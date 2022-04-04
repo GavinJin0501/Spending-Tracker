@@ -27,18 +27,33 @@ const mongooseOpts = {
     useUnifiedTopology: true,
 };
 
-if (process.env.username && process.env.password) {
-    mongooseOpts.user = process.env.username;
-    mongooseOpts.pass = process.env.password;
-}
 
 mongoose.model('User', User);
 mongoose.model('Category', Category);
 mongoose.model('Spending', Spending);
-mongoose.connect('mongodb://localhost/spendingtrackerdb', mongooseOpts, (err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('connected to database'); 
-    }
-});
+
+
+if (process.env.DATABASE) { // deployment
+	mongoose.connect(process.env.DATABASE, mongooseOpts, (err) => {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log('connected to database'); 
+		}
+	});
+
+} else { // local
+	if (process.env.username && process.env.password) {
+		mongooseOpts.user = process.env.username;
+		mongooseOpts.pass = process.env.password;
+	}
+
+	mongoose.connect('mongodb://localhost/spendingtrackerdb', mongooseOpts, (err) => {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log('connected to database'); 
+		}
+	});
+}
+

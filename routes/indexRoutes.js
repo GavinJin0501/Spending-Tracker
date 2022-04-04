@@ -33,7 +33,6 @@ router.post("/register", async (req, res) => {
     } else {
         const existingUser = await User.findOne({username: username}).exec();
         if (!existingUser) {
-            // hash: $argon2i$v=19$m=4096,t=3,p=1$z+t8lqXpDjhIJt14Lwf0NQ$JfUcW6NfQH12lPU+D67/u5rikHJyyk6mYCYKhjKcfbU
             const hash = await argon2.hash(password);
             const savedUser = await new User({username: username, hash: hash, categories: ["Food", "Entertainment", "Transportation", "Shopping"]}).save();
             await new Category({user: savedUser["_id"], name: "Food"}).save();

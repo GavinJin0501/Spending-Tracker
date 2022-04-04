@@ -30,7 +30,6 @@ const authPath = homeRoutes.stack.map(r => r = (r.route.path !== "/") ? "/home" 
 // set engine for app
 app.set("view engine", "hbs");
 
-
 // use middlewares
 app.use((req, res, next) => {   // remove trailing slash -- ref: https://searchfacts.com/url-trailing-slash/
 	if (req.path[-1] === '/' && req.path.length > 1) {

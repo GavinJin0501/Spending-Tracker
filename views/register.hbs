@@ -1,33 +1,29 @@
-<div class="wrapper">
-    <div class="center-box">
-        <div id="index-title">Create Your Account</div>
-        <form action="" method="POST" id="lr-form" onsubmit="return simpleCheck()">
-            <table>
-                <tr>
-                    <td>Username:</td>
-                    <td><input type="text" name="username" placeholder="<= 15 characters" required autofocus autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" name="password" required autofocus id="pwd1"></td>
-                </tr>
-                <tr>
-                    <td>Pwd again:</td>
-                    <td><input type="password" name="password2nd" required autofocus id="pwd2"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Register" style="font-size: 1vw;"></td>
-                </tr>
-            </table>
-            <div id="error">{{error}}</div>
-        </form>
-        
-        <div id="btns-wrapper">
-            <a href="/"><button class="index-btns">To Home</button></a>
-            <a href="/login"><button class="index-btns">To Login</button></a>
-        </div>
-    </div>
+<div id="index-title">Create Your Account</div>
+<form action="" method="POST" id="lr-form" onsubmit="return simpleCheck()">
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="username" placeholder="<= 15 characters" required autofocus autocomplete="off"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password" required autofocus id="pwd1"></td>
+        </tr>
+        <tr>
+            <td>Pwd again:</td>
+            <td><input type="password" name="password2nd" required autofocus id="pwd2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Register" style="font-size: 1vw;"></td>
+        </tr>
+    </table>
+    <div id="error">{{error}}</div>
+</form>
+
+<div id="btns-wrapper">
+    <a href="/"><button class="index-btns">To Home</button></a>
+    <a href="/login"><button class="index-btns">To Login</button></a>
 </div>
 
 <script>

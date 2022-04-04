@@ -63,4 +63,4 @@ app.use("/", indexRoutes);
 app.use("/home", homeRoutes);
 
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

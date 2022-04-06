@@ -12,7 +12,7 @@ Spending Tracker is a web app that will allow users to keep track of their daliy
 The application will store Users, Categories and Spendings.
 
 * Users: user obj, storing the username, password hash, and the types of spending the user have
-    * Users can have multiple categories (via references)
+    * Users can have multiple categories (via names)
 * Categories: category obj, storing the user reference, name of the category, and the 
     * each category can have multiple spendings (by embedding)
 * Spendings: spendign obj, storing each single spending including date, money amount, and notes
@@ -23,7 +23,7 @@ An Example User:
 {
     username: "shannonshopper",
     hash: , // a password hash
-    categories: // an array of references to Category documents
+    categories: // an array of names of Category documents
 }
 ```
 
@@ -46,15 +46,15 @@ An Example Category with Embedded Spendings:
 
 ## Wireframes
 
-/category - page for showing all shopping catrgories
+/home - page for showing all shopping catrgories
 
 ![category](documentation/category.png)
 
-/category/slug - page for showing specific shopping category
+/home/slug - page for showing specific shopping category
 
 ![category](documentation/category-slug.png)
 
-/category/create - page for creating a new spending category
+/home/create-category - page for creating a new spending category
 
 ![category create](documentation/category-create.png)
 
@@ -81,10 +81,10 @@ An Example Category with Embedded Spendings:
     * User authentication is the process of determining whehter or not users are who they claim to be
     * By using user authentication, the communication between client and server will be more secure, thus clients' privacy being protected
     * I'm going to be using passport for user authentication
-* (3 points) Perform client side form validation using a JavaScript library
-    * Form validation in the client side is to check the form input before it reaches the server
-    * By using it, the user can get a response of the correctness of their input as soon as possible; Besides, it also protects the server and the database from malicious/wrong input
-    * I'm going to be using jbvalidator
+* (3 points) Deploy the applicaiton using Heroku + Mongodb Altas
+    * Deployment is to keep running an app on a server so that it can be used by more users
+    * By deploying with Heroku and Mongodb Altas, this project will survive after the course unlike the courant server, and I may keep working on it
+    * I'm going to be using Heroku and Mongodb Altas
 * (1 point) External API -- Google Chart API
     * API -- application programming interface, is a connection between computers or computer programs.
     * By using API, I can achieve my goals (in this case, drawing charts) more easily and more conconvenient.
@@ -103,7 +103,7 @@ An Example Category with Embedded Spendings:
 ## Annotations / References Used
 
 1. [passport.js authentication docs](http://passportjs.org/docs)
-2. [jbvalidator docs](https://github.com/emretulek/jbvalidator)
+2. [heroku deploy docs](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 3. [google chart developers docs](https://developers.google.com/chart)
 4. [OpenWeather docs](https://openweathermap.org/current)
 

@@ -32,13 +32,13 @@ body {
 
 #index-title {
     text-align: center;
-    font-size: 2.4vw;
+    font-size: 4vw;
     margin-bottom: 10vh;
 }
 
 #index-description {
     text-align: center;
-    font-size: 1vw;
+    font-size: 1.5vw;
     margin-bottom: 10vh;
     width: 80%;
 }
@@ -60,10 +60,10 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.7vw;
+    font-size: 1.3vw;
     font-weight: bold;
     cursor: pointer;
-    width: 9vw;
+    width: 11vw;
     text-align: center;
     border: #333 1.5px solid;
 }
@@ -91,8 +91,9 @@ body {
 
 
 #error {
-    color:antiquewhite;
+    color:gold;
     text-align: right;
+    font-size: 1vw;
 }
 
 input[type=submit] {
@@ -102,13 +103,42 @@ input[type=submit] {
 #home-wrapper {
     min-height: 100vh;
     min-width: 100%;
-    
 }
 
 #navbar {
     display: flex;
     justify-content: center;
+}
 
+.link-form {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+    object-fit: fill;
+    align-items: center;
+    padding: 0.8vw;
+    text-decoration: none;
+    font-size: 1vw;
+    color: white;
+}
+
+.link-form:nth-child(1) {
+    background-color: #444;
+}
+
+
+.link-form:nth-child(2) {
+    background-color: #555;
+}
+
+
+.link-form:nth-child(3) {
+    background-color: #444;
+}
+
+.link-form:hover {
+    background-color: gray;
 }
 
 .link-form > input {
@@ -120,4 +150,29 @@ input[type=submit] {
     margin-top: 30vh;
     display: flex;
     justify-content: center;
+}
+
+#fixed-info {
+    position: fixed;
+    top: 5vh;
+    left: 2vw;
+    width: 16vw;
+    height: 13vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 0 1vh 0;
+    font-size: 1.3vw;
+    flex-direction: column;
+}
+
+#date {
+    flex-grow: 1;
+}
+
+#weather {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
 }

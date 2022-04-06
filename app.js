@@ -23,8 +23,6 @@ const sessionOptions = {
 };
 const unauthPath = indexRoutes.stack.map(r => r = r.route.path);
 const authPath = homeRoutes.stack.map(r => r = (r.route.path !== "/") ? "/home" + r.route.path : "/home");
-// console.log("unauth:", unauthPath);
-// console.log("auth:", authPath);
 
 
 // set engine for app

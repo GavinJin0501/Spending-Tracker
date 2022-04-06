@@ -1,23 +1,81 @@
 <div id="home-wrapper">
-    <div id="index-title" style="padding-top: 1vh; margin-bottom: 5vh;">Welcome Home, {{user.username}}!</div>
+    <div id="index-title" style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 3vw;">Welcome Home, {{user.username}}!</div>
     <div id="navbar">
-        <form class="link-form" action="/home" method="GET">
-            <input type="submit" value="Home">
-        </form>
-        <form class="link-form" action="/home/create-category" method="GET">
-            <input type="submit" value="Create a New Caregory">
-        </form>
-        <form class="link-form" action="/home/logout" method="POST">
-            <input type="submit" value="Logout">
-        </form>
+        <a href="/home" class="link-form">Home</a>
+        <a href="/home/create-category" class="link-form">Create a New Caregory</a>
+        <a href="/home/logout" class="link-form" onclick="event.preventDefault();document.getElementById('magic-form').submit();">Logout</a>
     </div>
     
     <ul>
+        <li>All</li>
         {{#each user.categories}}
             <li>{{this}}</li>
         {{/each}}
-        <li>All</li>
+        
     </ul>
-
+</div>
+<div id="fixed-info">
+    <div id="date">Today is</div>
+    <div id="weather">
+        <div>The weather is </div> 
+    </div>
 </div>
 
+<form id="magic-form" action="/home/logout" method="POST" style="display: none;"></form>
+
+<script>
+    const dateDiv = document.querySelector("#date");
+    const today = new Date().toISOString().slice(0, 10);
+    dateDiv.textContent = "Today is " + today;
+
+    if (navigator.geolocation) {
+        console.log("geolocation success");
+        navigator.geolocation.getCurrentPosition(setPosition, showError);
+    }    
+
+    
+    function setPosition(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const apiKey = "6073cc6b5cacf4b89f4d40865f055945";
+        const weatherDiv = document.querySelector("#weather");
+
+        setData = async () => {
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            const response = await fetch(url);
+
+            if (response.ok) { 
+                const json = await response.json();
+                const iconUrl = `http://openweathermap.org/img/wn/${json.weather[0].icon}@2x.png`;
+                const img = document.createElement('img');
+                img.src = iconUrl;
+                img.style.width = "5vw";
+                weatherDiv.appendChild(img);
+            } else {
+                console.log('Error: ' + response.status);
+            }
+        };
+        setData();
+    }
+
+    function showError(error) {
+        switch (error.code) {
+
+          case error.PERMISSION_DENIED:
+            console.log('User denied the request for location');
+            break;
+
+          case error.POSITION_UNAVAILABLE:
+            console.log('Location info is not available');
+            break;
+
+          case error.TIMEOUT:
+            console.log('Location request has timed out');
+            break;
+
+          case error.UNKNOWN_ERROR:
+            console.log('Mysterious location error');
+            break;
+        }
+    }
+</script>

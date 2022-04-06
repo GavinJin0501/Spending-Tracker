@@ -7,7 +7,6 @@ const argon2 = require("argon2");
 const User = mongoose.model("User");
 
 
-// reference: https://www.passportjs.org/tutorials/password/verify/
 passport.use(new LocalStrategy(function verify(username, password, cb) {
     User.findOne({username: username}, async function(err, user, count) {
         if (err) {return cb(err);}

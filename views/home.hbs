@@ -23,6 +23,7 @@
 
 <form id="magic-form" action="/home/logout" method="POST" style="display: none;"></form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
     const dateDiv = document.querySelector("#date");
     const today = new Date().toISOString().slice(0, 10);
@@ -40,20 +41,22 @@
         const apiKey = "6073cc6b5cacf4b89f4d40865f055945";
         const weatherDiv = document.querySelector("#weather");
 
-        setData = async () => {
-            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-            const response = await fetch(url);
 
-            if (response.ok) { 
-                const json = await response.json();
-                const iconUrl = `http://openweathermap.org/img/wn/${json.weather[0].icon}@2x.png`;
-                const img = document.createElement('img');
-                img.src = iconUrl;
-                img.style.width = "5vw";
-                weatherDiv.appendChild(img);
-            } else {
-                console.log('Error: ' + response.status);
-            }
+
+        setData = () => {
+            $.post("/home/get-weather-icon", {
+                lat,
+                lon
+            }, function(data, status) {
+                if (data.iconUrl) {
+                    const img = document.createElement('img');
+                    img.src = data.iconUrl;
+                    img.style.width = "5vw";
+                    weatherDiv.appendChild(img);
+                }
+                
+            }); 
+            
         };
         setData();
     }

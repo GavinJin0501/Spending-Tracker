@@ -38,10 +38,7 @@
     function setPosition(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        const apiKey = "6073cc6b5cacf4b89f4d40865f055945";
         const weatherDiv = document.querySelector("#weather");
-
-
 
         setData = () => {
             $.post("/home/get-weather-icon", {
@@ -54,9 +51,7 @@
                     img.style.width = "5vw";
                     weatherDiv.appendChild(img);
                 }
-                
             }); 
-            
         };
         setData();
     }

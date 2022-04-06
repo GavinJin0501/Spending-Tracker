@@ -27,10 +27,13 @@
 <script>
     const dateDiv = document.querySelector("#date");
     const today = new Date().toISOString().slice(0, 10);
+    const weatherDiv = document.querySelector("#weather");
     dateDiv.textContent = "Today is " + today;
+    let iconUrl = "{{user.iconUrl}}";
 
-    if (navigator.geolocation) {
-        console.log("geolocation success");
+    if (iconUrl) {
+        addImgIcon(iconUrl);
+    } else if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(setPosition, showError);
     }    
 
@@ -38,7 +41,6 @@
     function setPosition(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        const weatherDiv = document.querySelector("#weather");
 
         setData = () => {
             $.post("/home/get-weather-icon", {
@@ -46,14 +48,18 @@
                 lon
             }, function(data, status) {
                 if (data.iconUrl) {
-                    const img = document.createElement('img');
-                    img.src = data.iconUrl;
-                    img.style.width = "5vw";
-                    weatherDiv.appendChild(img);
+                    addImgIcon(data.iconUrl);
                 }
             }); 
         };
         setData();
+    }
+
+    function addImgIcon(url) {
+        const img = document.createElement('img');
+        img.style.width = "5vw";
+        img.src = url;
+        weatherDiv.appendChild(img);
     }
 
     function showError(error) {

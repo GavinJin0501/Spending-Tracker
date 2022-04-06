@@ -1,15 +1,9 @@
 <div id="home-wrapper">
-    <div id="index-title" style="padding-top: 1vh; margin-bottom: 5vh;">Create a New Category</div>
+    <div id="index-title" style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 3vw;">Create a New Category</div>
     <div id="navbar">
-        <form class="link-form" action="/home" method="GET">
-            <input type="submit" value="Home">
-        </form>
-        <form class="link-form" action="/home/create-category" method="GET">
-            <input type="submit" value="Create a New Caregory">
-        </form>
-        <form class="link-form" action="/home/logout" method="POST">
-            <input type="submit" value="Logout">
-        </form>
+        <a href="/home" class="link-form">Home</a>
+        <a href="/home/create-category" class="link-form">Create a New Caregory</a>
+        <a href="/home/logout" class="link-form" onclick="event.preventDefault();document.getElementById('magic-form').submit();">Logout</a>
     </div>
     <div id="form-wrapper">
         <form action="/home/create-category" method="POST" id="lr-form">
@@ -27,3 +21,4 @@
         </form>
     </div>
 </div>
+<form id="magic-form" action="/home/logout" method="POST" style="display: none;"></form>

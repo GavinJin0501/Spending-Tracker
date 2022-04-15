@@ -38,21 +38,26 @@
     }    
 
     
-    function setPosition(position) {
+    async function setPosition(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        setData = () => {
-            $.post("/home/get-weather-icon", {
-                lat,
-                lon
-            }, function(data, status) {
-                if (data.iconUrl) {
-                    addImgIcon(data.iconUrl);
-                }
-            }); 
+        const url = "/home/get-weather-icon";
+        const config = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({lat, lon})
         };
-        setData();
+
+        const response = await fetch(url, config);
+        const data = await response.json();
+        const ans = data.iconUrl;
+
+        if (ans) {
+            addImgIcon(ans);
+        }
     }
 
     function addImgIcon(url) {

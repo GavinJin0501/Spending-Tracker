@@ -38,6 +38,7 @@ app.use((req, res, next) => {   // remove trailing slash -- ref: https://searchf
 });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(session(sessionOptions));
 app.use(passport.authenticate("session"));
 app.use((req, res, next) => {   // restrict access

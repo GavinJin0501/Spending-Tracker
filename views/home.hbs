@@ -6,13 +6,13 @@
         <a href="/home/logout" class="link-form" onclick="event.preventDefault();document.getElementById('magic-form').submit();">Logout</a>
     </div>
     
-    <ul>
-        <li>All</li>
+    <div class="list-group">
+        <a href="/home/All" class="list-group-item">All</a>
         {{#each user.categories}}
-            <li>{{this}}</li>
+            <a href="/home/{{this}}" class="list-group-item">{{this}}</a>
         {{/each}}
-        
-    </ul>
+    </div>
+    
 </div>
 <div id="fixed-info">
     <div id="date">Today is</div>
@@ -23,7 +23,6 @@
 
 <form id="magic-form" action="/home/logout" method="POST" style="display: none;"></form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
     const dateDiv = document.querySelector("#date");
     const today = new Date().toISOString().slice(0, 10);

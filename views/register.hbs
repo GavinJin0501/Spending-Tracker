@@ -1,23 +1,19 @@
 <div id="index-title">Create Your Account</div>
 <form action="" method="POST" id="lr-form" onsubmit="return simpleCheck()">
-    <table>
-        <tr>
-            <td>Username:</td>
-            <td><input type="text" name="username" placeholder="<= 15 characters" required autofocus autocomplete="off"></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" name="password" required autofocus id="pwd1"></td>
-        </tr>
-        <tr>
-            <td>Pwd again:</td>
-            <td><input type="password" name="password2nd" required autofocus id="pwd2"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Register" style="font-size: 1vw;"></td>
-        </tr>
-    </table>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="<= 15 characters" required autofocus autocomplete="off" class="form-control input-lg">
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" required autofocus id="pwd1" class="form-control input-lg">
+    </div>
+    <div class="form-group">
+        <label for="password">Password Again:</label>
+        <input type="password" name="password2nd" required autofocus id="pwd2" class="form-control input-lg">
+    </div>
+    <button type="submit" class="btn btn-default pull-right btn-lg">Register</button>
+    <br>
     <div id="error">{{error}}</div>
 </form>
 

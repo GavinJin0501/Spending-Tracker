@@ -70,6 +70,11 @@ body {
 
 #lr-form {
     margin-bottom: 10vh;
+    font-size: 1vw;
+}
+
+#lr-form > .form-group > input {
+    /* font-size: 1vw; */
 }
 
 #lr-form table tr td {
@@ -93,7 +98,7 @@ body {
 #error {
     color:gold;
     text-align: right;
-    font-size: 1vw;
+    font-size: 0.8vw;
 }
 
 input[type=submit] {
@@ -139,6 +144,7 @@ input[type=submit] {
 
 .link-form:hover {
     background-color: gray;
+    text-decoration: none;
 }
 
 .link-form > input {
@@ -175,4 +181,13 @@ input[type=submit] {
     flex-grow: 1;
     display: flex;
     align-items: center;
+}
+
+.list-group-item {
+    font-size: 1.5vw;
+    text-align: center;
+}
+
+.input-group {
+    font-size: 2vw;
 }

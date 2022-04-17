@@ -77,7 +77,7 @@ An Example Category with Embedded Spendings:
 
 ## Research Topics
 
-* (5 points) Integrate user authentication
+* (3 points) Integrate user authentication
     * User authentication is the process of determining whehter or not users are who they claim to be
     * By using user authentication, the communication between client and server will be more secure, thus clients' privacy being protected
     * I'm going to be using passport for user authentication
@@ -85,6 +85,10 @@ An Example Category with Embedded Spendings:
     * Deployment is to keep running an app on a server so that it can be used by more users
     * By deploying with Heroku and Mongodb Altas, this project will survive after the course unlike the courant server, and I may keep working on it
     * I'm going to be using Heroku and Mongodb Altas
+* (2 points) Using Bootstrap CSS
+    * CSS is a crucial part for a website design
+    * Bootstrap CSS is lightweight and customized, making the elements on my websites more organizable
+    * I'm going to be using Bootstrap
 * (1 point) External API -- Google Chart API
     * API -- application programming interface, is a connection between computers or computer programs.
     * By using API, I can achieve my goals (in this case, drawing charts) more easily and more conconvenient.
@@ -104,6 +108,7 @@ An Example Category with Embedded Spendings:
 
 1. [passport.js authentication docs](http://passportjs.org/docs)
 2. [heroku deploy docs](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-3. [google chart developers docs](https://developers.google.com/chart)
-4. [OpenWeather docs](https://openweathermap.org/current)
+3. [bootstrap docs](https://getbootstrap.com/docs/3.4/css/)
+4. [google chart developers docs](https://developers.google.com/chart)
+5. [OpenWeather docs](https://openweathermap.org/current)
 

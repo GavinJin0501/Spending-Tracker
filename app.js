@@ -11,6 +11,7 @@ const session = require('express-session');
 const passport = require("passport");
 const indexRoutes = require("./routes/indexRoutes");
 const homeRoutes = require("./routes/homeRoutes");
+const apiRoutes = require("./routes/apiRoutes");
 
 
 // define global variables
@@ -59,6 +60,7 @@ app.use((req, res, next) => {
 // use router middlewares
 app.use("/", indexRoutes);
 app.use("/home", homeRoutes);
+app.use("/api", apiRoutes);
 
 
 app.listen(process.env.PORT || 3000);

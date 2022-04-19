@@ -2,10 +2,10 @@
     <div id="index-title" style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 3vw;">Create a New Category</div>
     <div id="navbar">
         <a href="/home" class="link-form">Home</a>
-        <a href="/home/create-category" class="link-form">Create a New Caregory</a>
+        <a href="/home/create-category" class="link-form">Create/Change a Caregory</a>
         <a href="/home/logout" class="link-form" onclick="event.preventDefault();document.getElementById('magic-form').submit();">Logout</a>
     </div>
-    <div id="form-wrapper">
+    <div id="form-wrapper" style="margin-top: 10vh;">
         <form action="/home/create-category" method="POST" id="lr-form">
             <div class="form-group">
                 <label for="name">New Catrgory Name:</label>
@@ -13,6 +13,20 @@
             </div>
             <button type="submit" class="btn btn-default pull-right btn-lg">Create</button>
             <div id="error">{{error}}</div>
+        </form>
+    </div>
+    <div id="form-wrapper" style="margin-top: 0;">
+        <form action="/home/change-category" method="POST" id="lr-form">
+            <div class="form-group">
+                <label for="oldName">Catrgory Old Name:</label>
+                <input type="text" class="form-control input-lg" name="oldName" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="newName">Catrgory New Name:</label>
+                <input type="text" class="form-control input-lg" name="newName" required autofocus>
+            </div>
+            <button type="submit" class="btn btn-default pull-right btn-lg">Change</button>
+            <div id="error">{{error1}}</div>
         </form>
     </div>
     

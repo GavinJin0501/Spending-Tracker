@@ -6,6 +6,7 @@ require("./auth.js");
 
 // require modules
 const express = require("express");
+const mongoose = require("mongoose");
 const path = require("path");
 const session = require('express-session');
 const passport = require("passport");
@@ -23,6 +24,7 @@ const sessionOptions = {
 };
 const unauthPath = indexRoutes.stack.map(r => r = r.route.path);
 const authPath = homeRoutes.stack.map(r => r = (r.route.path !== "/") ? "/home" + r.route.path : "/home");
+const User = mongoose.model("User");
 
 
 // set engine for app
@@ -30,9 +32,9 @@ app.set("view engine", "hbs");
 
 // use middlewares
 app.use((req, res, next) => {   // remove trailing slash -- ref: https://searchfacts.com/url-trailing-slash/
-	if (req.path[-1] === '/' && req.path.length > 1) {
+	if (req.path[req.path.length-1] === '/' && req.path.length > 1) {
 		const query = req.url.slice(req.path.length);
-		res.redirect(301, req.path.slice(0, -1) + query);
+		res.redirect(req.path.slice(0, -1) + query);
 	} else {
 		next();
 	}
@@ -51,7 +53,11 @@ app.use((req, res, next) => {   // restrict access
         next();
     }
 });
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
+    if (req.isAuthenticated() && !req.user.id) {
+        const user = await User.findOne({username: req.user.username});
+        req.user.id = user["_id"];
+    }
     res.locals.user = req.user;
     next();
 });

@@ -46,6 +46,7 @@ router.post("/register", async (req, res) => {
                 res.redirect("/home");
             });
         } else {
+            console.log("HAHAHA");
             res.render("register", {error: "Username Invalid"});
         }
     }

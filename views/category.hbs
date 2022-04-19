@@ -1,0 +1,56 @@
+<div id="home-wrapper">
+    <div id="index-title" style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 3vw;">Category: {{slug}}</div>
+    <div id="navbar">
+        <a href="/home" class="link-form">Home</a>
+        <a href="/home/create-category" class="link-form">Create/Change a Caregory</a>
+        <a href="/home/logout" class="link-form" onclick="event.preventDefault();document.getElementById('magic-form').submit();">Logout</a>
+    </div>
+    <div id="form-wrapper" style="margin-top: 5vh; margin-bottom: 5vh;">
+        <form class="form-inline" method="POST" action="/home/category/{{slug}}">
+            <div class="form-group mb-2">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control-plaintext input-lg" name="date" id="date" required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="amount">Amount:</label>
+                <input type="text" class="form-control-plaintext input-lg" name="amount" id="amount" required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="notes">Notes:</label>
+                <input type="text" class="form-control-plaintext input-lg" name="notes" id="notes" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 btn-lg">Create Spending</button>
+        </form>
+    </div>
+    <table class="table table-hover table-striped" id="tb">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each spendings}}
+                <tr>
+                    <td>{{date}}<span style="display: none;">{{_id}}</span></td>
+                    <td>{{amount}}</td>
+                    <td>{{notes}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<form id="magic-form" action="/home/logout" method="POST" style="display: none;"></form>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script>
+    let error = "{{error}}";
+    if (error) {
+        alert(error);
+    }
+
+    $(document).ready(function () {
+        $('#tb').DataTable();
+    });
+</script>

@@ -2,14 +2,14 @@
     <div id="index-title" style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 3vw;">Welcome Home, {{user.username}}!</div>
     <div id="navbar">
         <a href="/home" class="link-form">Home</a>
-        <a href="/home/create-category" class="link-form">Create a New Caregory</a>
+        <a href="/home/create-category" class="link-form">Create/Change a Caregory</a>
         <a href="/home/logout" class="link-form" onclick="event.preventDefault();document.getElementById('magic-form').submit();">Logout</a>
     </div>
     
     <div class="list-group">
-        <a href="/home/All" class="list-group-item">All</a>
+        <a href="/home/category/All" class="list-group-item">All</a>
         {{#each user.categories}}
-            <a href="/home/{{this}}" class="list-group-item">{{this}}</a>
+            <a href="/home/category/{{this}}" class="list-group-item">{{this}}</a>
         {{/each}}
     </div>
     

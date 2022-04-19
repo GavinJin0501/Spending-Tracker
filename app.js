@@ -31,7 +31,7 @@ const User = mongoose.model("User");
 app.set("view engine", "hbs");
 
 // use middlewares
-app.use((req, res, next) => {   // remove trailing slash -- ref: https://searchfacts.com/url-trailing-slash/
+app.use((req, res, next) => { // remove trailing slash -- ref: https://searchfacts.com/url-trailing-slash/
 	if (req.path[req.path.length-1] === '/' && req.path.length > 1) {
 		const query = req.url.slice(req.path.length);
 		res.redirect(req.path.slice(0, -1) + query);
@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session(sessionOptions));
 app.use(passport.authenticate("session"));
-app.use((req, res, next) => {   // restrict access
+app.use((req, res, next) => { // restrict access
     if (req.isAuthenticated() && unauthPath.includes(req.path)) {
         res.redirect("/home");
     } else if (!req.isAuthenticated() && authPath.includes(req.path)) {

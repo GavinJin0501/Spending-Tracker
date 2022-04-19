@@ -46,11 +46,11 @@ router.post("/category/:slug", async (req, res) => {
     if (!req.isAuthenticated()) {
         res.redirect("/");
     } else {
-        req.body.date = req.body.date.slice(0, 10) + " " + req.body.date.slice(11)
+        req.body.date = req.body.date.slice(0, 10) + " " + req.body.date.slice(11);
         const {slug} = req.params;
         const filter = {user: req.user.id, name: slug};
         const newSpending = new Spending(req.body);
-        const currCategory = await Category.findOne({user: req.user.id, name: slug});
+        const currCategory = await Category.findOne(filter);
         if (currCategory) {
             currCategory.spendings.push(newSpending);
             await currCategory.save();
@@ -68,13 +68,10 @@ router.post("/create-category", async (req, res) => {
     const user = await User.findOne({username});
     if (user) {
         const categories = user.categories;
-        let has = false;
-
-        categories.forEach(e => {
-            if (e.toLowerCase() === toAdd.toLowerCase()) {
-                has = true;
-            }
-        });
+        const has = categories.reduce((prev, curr) => {
+            prev = prev || (curr.toLowerCase() === toAdd.toLowerCase());
+            return prev;
+        }, false);
 
         if (has) {
             res.render("create-category", {error: "Name Already Existed"});    
@@ -96,7 +93,7 @@ router.post("/change-category", async (req, res) => {
     const newName = req.body.newName;
 
     if (!oldName || !newName) {
-        res.render("create-category", {error1: "Invalid Information"})
+        res.render("create-category", {error1: "Invalid Information"});
     }
 
 

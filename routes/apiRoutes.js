@@ -12,7 +12,9 @@ router.post("/get-weather-icon", async (req, res) => {
 
     try {
         response = await axios.get(url);
-    } catch (err) {}
+    } catch (err) {
+        console.log(err);
+    }
     
     if (response.data) {
         iconUrl = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;

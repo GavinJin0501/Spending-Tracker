@@ -8,7 +8,7 @@ const User = mongoose.model("User");
 
 
 passport.use(new LocalStrategy(function verify(username, password, cb) {
-    User.findOne({username: username}, async function(err, user, count) {
+    User.findOne({username: username}, async function(err, user) {
         if (err) {return cb(err);}
         else if (!user) {return cb(null, false, {message: "Incorrect username or password"});}
         try {

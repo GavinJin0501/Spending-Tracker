@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 
 const User = new mongoose.Schema({
-  	username: {type: String, required: true, maxLength: 15},
-  	hash: {type: String, required: true},
+	username: {type: String, required: true, maxLength: 15},
+	hash: {type: String, required: true},
 	categories: [String]
 });
 
@@ -16,9 +16,9 @@ const Spending = new mongoose.Schema({
 
 
 const Category = new mongoose.Schema({
-  	user: {type: mongoose.Schema.Types.ObjectId, ref:'User', required: true},
-  	name: {type: String, required: true},
-  	spendings: [Spending]
+	user: {type: mongoose.Schema.Types.ObjectId, ref:'User', required: true},
+	name: {type: String, required: true},
+	spendings: [Spending]
 });
 
 

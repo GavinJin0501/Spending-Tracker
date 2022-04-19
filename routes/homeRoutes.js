@@ -46,6 +46,7 @@ router.post("/category/:slug", async (req, res) => {
     if (!req.isAuthenticated()) {
         res.redirect("/");
     } else {
+        req.body.date = req.body.date.slice(0, 10) + " " + req.body.date.slice(11)
         const {slug} = req.params;
         const filter = {user: req.user.id, name: slug};
         const newSpending = new Spending(req.body);

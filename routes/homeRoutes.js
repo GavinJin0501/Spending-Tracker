@@ -68,11 +68,12 @@ router.post("/category/:slug", async (req, res) => {
         res.redirect("/");
     } else {
         req.body.date = sliceDate(req.body.date);
+        req.body.amount = parseFloat(req.body.amount);
         const {slug} = req.params;
         const filter = {user: req.user.id, name: req.body.category};
         const newSpending = new Spending(req.body);
         const currCategory = await Category.findOne(filter);
-        if (currCategory && !!moment(req.body.date, dateFormat, true).isValid() && !isNaN(parseFloat(req.body.amount)) && req.body.notes.length <= 50) {
+        if (currCategory && !!moment(req.body.date, dateFormat, true).isValid() && !isNaN(req.body.amount) && req.body.notes.length <= 50) {
             currCategory.spendings.push(newSpending);
             await currCategory.save();
             res.redirect("/home/category/" + slug);

@@ -49,7 +49,7 @@ router.post("/edit-spending", async (req, res) => {
             
             if (obj) {
                 obj.date = req.body.date;
-                obj.amount = req.body.amount;
+                obj.amount = parseFloat(req.body.amount);
                 obj.notes = req.body.notes;
                 await cat.save();
                 res.json({msg: "success"});
@@ -69,7 +69,7 @@ router.post("/delete-spending", async (req, res) => {
     } else {
         const filter = {user: req.user.id, name: req.body.name};
         const cat = await Category.findOne(filter);
-        
+
         cat.spendings = cat.spendings.filter(s => {
             return s._id.toString() !== req.body._id;
         });

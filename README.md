@@ -89,16 +89,12 @@ An Example Category with Embedded Spendings:
     * CSS is a crucial part for a website design
     * Bootstrap CSS is lightweight and customized, making the elements on my websites more organizable
     * I'm going to be using Bootstrap
-* (1 point) External API -- Google Chart API
-    * API -- application programming interface, is a connection between computers or computer programs.
-    * By using API, I can achieve my goals (in this case, drawing charts) more easily and more conconvenient.
-    * I'm going to be using Google Chart api to visualize some information on my website.
 * (1 point) External API -- OpenWeather API
     * API -- application programming interface, is a connection between computers or computer programs.
     * By using API, I can achieve my goals (in this case, showing today's weather) more easily and more conconvenient.
     * I'm going to be using OpenWeather api to display today's the weather on my website.
 
-10 points total out of 8 required points
+9 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
@@ -109,6 +105,5 @@ An Example Category with Embedded Spendings:
 1. [passport.js authentication docs](http://passportjs.org/docs)
 2. [heroku deploy docs](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 3. [bootstrap docs](https://getbootstrap.com/docs/3.4/css/)
-4. [google chart developers docs](https://developers.google.com/chart)
-5. [OpenWeather docs](https://openweathermap.org/current)
+4. [OpenWeather docs](https://openweathermap.org/current)
 

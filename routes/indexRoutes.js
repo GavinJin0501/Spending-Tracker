@@ -28,7 +28,7 @@ router.post("/login", passport.authenticate("local", {
 
 router.post("/register", async (req, res) => {
     const {username, password} = req.body;
-    if (username.length < 3 || username.length > 15) {
+    if (username.length < 3 || username.length > 15 || !username.trim()) {
         res.render("register", {error: "Username Invalid"});
     } else {
         const existingUser = await User.findOne({username: username}).exec();
@@ -46,7 +46,6 @@ router.post("/register", async (req, res) => {
                 res.redirect("/home");
             });
         } else {
-            console.log("HAHAHA");
             res.render("register", {error: "Username Invalid"});
         }
     }

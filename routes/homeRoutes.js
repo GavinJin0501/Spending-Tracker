@@ -11,10 +11,6 @@ router.get("/", (req, res) => {
 });
 
 
-router.get("/create-category", (req, res) => {
-    res.render("create-category");
-});
-
 router.get("/category/:slug", async (req, res) => {
     if (!req.isAuthenticated()) {
         res.redirect("/");
@@ -25,16 +21,24 @@ router.get("/category/:slug", async (req, res) => {
             filter.name = slug;
             const cat = await Category.findOne(filter);
             const spendings = cat.spendings;
-            res.render("category", {slug, spendings});
+            res.render("category", {slug, spendings, isAll: false});
         } else if (slug === "All") {
             const spendings = [];
             for (const e of req.user.categories) {
                 filter.name = e;
                 const cat = await Category.findOne(filter);
                 const temp = cat.spendings;
-                spendings.push(...temp);
+                for (const s of temp) {
+                    const obj = {};
+                    obj.date = s.date;
+                    obj.amount = s.amount;
+                    obj.notes = s.notes;
+                    obj["_id"] = s["_id"];
+                    obj.name = e;
+                    spendings.push(obj);
+                }
             }
-            res.render("category", {slug, spendings});
+            res.render("category", {slug, spendings, isAll: true, types: req.user.categories});
         } else {
             res.redirect("/home");
         }
@@ -48,25 +52,31 @@ router.post("/category/:slug", async (req, res) => {
     } else {
         req.body.date = req.body.date.slice(0, 10) + " " + req.body.date.slice(11);
         const {slug} = req.params;
-        const filter = {user: req.user.id, name: slug};
+        const filter = {user: req.user.id, name: req.body.category};
         const newSpending = new Spending(req.body);
         const currCategory = await Category.findOne(filter);
-        if (currCategory) {
+        if (currCategory && !isNaN(Date.parse(req.body.date)) && req.body.amount) {
             currCategory.spendings.push(newSpending);
             await currCategory.save();
             res.redirect("/home/category/" + slug);
         } else {
-            res.render("category", {error: "Invalid input"});
+            const cat = await Category.findOne({user: req.user.id, name: req.body.category});
+            const spendings = cat.spendings;
+            res.render("category", {error: "Invalid input", slug, spendings});
         }
     }
 });
 
 
+router.get("/create-category", (req, res) => {
+    res.render("create-category");
+});
+
 router.post("/create-category", async (req, res) => {
     const username = req.user.username;
     const toAdd = req.body.name;
     const user = await User.findOne({username});
-    if (user) {
+    if (user && toAdd.trim()) {
         const categories = user.categories;
         const has = categories.reduce((prev, curr) => {
             prev = prev || (curr.toLowerCase() === toAdd.toLowerCase());
@@ -93,13 +103,15 @@ router.post("/change-category", async (req, res) => {
     const newName = req.body.newName;
 
     if (!oldName || !newName) {
-        res.render("create-category", {error1: "Invalid Information"});
+        res.render("create-category", {error: "Invalid Information"});
+    } else {
+        // const [oldName, newName] = req.body;
+        // console.log(oldName, newName);
+        res.redirect("/home");
     }
 
 
-    // const [oldName, newName] = req.body;
-    // console.log(oldName, newName);
-    res.redirect("/home");
+    
 });
 
 

@@ -25,7 +25,7 @@
 
 <script>
     const dateDiv = document.querySelector("#date");
-    const today = new Date().toISOString().slice(0, 10);
+    const today = new Date().toLocaleString().slice(0, 9);
     const weatherDiv = document.querySelector("#weather");
     dateDiv.textContent = "Today is " + today;
     let iconUrl = "{{user.iconUrl}}";

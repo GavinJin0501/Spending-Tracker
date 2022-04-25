@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const moment = require("moment");
 
 const router = express.Router();
 const User = mongoose.model("User");
 const Category = mongoose.model("Category");
 const Spending = mongoose.model("Spending");
+const dateFormat = [moment.ISO_8601, "MM-DD-YYYY HH:mm"];
 
 function sliceDate(s) {
     return s.slice(0, 10) + " " + s.slice(11);
@@ -70,7 +72,7 @@ router.post("/category/:slug", async (req, res) => {
         const filter = {user: req.user.id, name: req.body.category};
         const newSpending = new Spending(req.body);
         const currCategory = await Category.findOne(filter);
-        if (currCategory && !isNaN(Date.parse(req.body.date)) && req.body.amount) {
+        if (currCategory && !!moment(req.body.date, dateFormat, true).isValid() && !isNaN(parseFloat(req.body.amount)) && req.body.notes.length <= 50) {
             currCategory.spendings.push(newSpending);
             await currCategory.save();
             res.redirect("/home/category/" + slug);

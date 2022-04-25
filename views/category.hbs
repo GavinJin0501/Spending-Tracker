@@ -57,24 +57,30 @@
                 {{#if isAll}}
                 <th>Category</th>
                 {{/if}}
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             {{#if isAll}}
                 {{#each spendings}}
                     <tr>
-                        <td>{{date}}<span style="display: none;">{{_id}}</span></td>
-                        <td class="sAmount">{{amount}}</td>
-                        <td>{{notes}}</td>
-                        <td>{{name}}</td>
+                        <td contenteditable='true' class="sDate">{{date}}</span></td>
+                        <td contenteditable='true' class="sAmount">{{amount}}</td>
+                        <td contenteditable='true' class="sNotes">{{notes}}</td>
+                        <td aria-readonly="true" class="sName">{{name}}</td>
+                        <td><button class="btn btn-outline-default btn-block" onclick="edit(this.parentNode.parentNode)">Edit<span style="display: none;">{{_id}}</button></td>
+                        <td><button class="btn btn-outline-default btn-block" onclick="sDelete(this.parentNode.parentNode)">Delete</button></td>
                     </tr>
                 {{/each}}
             {{else}}
                 {{#each spendings}}
                     <tr>
-                        <td>{{date}}<span style="display: none;">{{_id}}</span></td>
-                        <td class="sAmount">{{amount}}</td>
-                        <td>{{notes}}</td>
+                        <td contenteditable='true' class="sDate">{{date}}</td>
+                        <td contenteditable='true' class="sAmount" >{{amount}}</td>
+                        <td contenteditable='true' class="sNotes">{{notes}}</td>
+                        <td><button class="btn btn-outline-default btn-block" onclick="edit(this.parentNode.parentNode)">Edit<span style="display: none;">{{_id}}</span></button></td>
+                        <td><button class="btn btn-outline-default btn-block" onclick="sDelete(this.parentNode.parentNode)">Delete</button></td>
                     </tr>
                 {{/each}}
             {{/if}}
@@ -89,17 +95,68 @@
 <script>
     $(document).ready(function () {
         $('#tb').DataTable();
+        const totalAmount = document.querySelector("#totalAmount");
+        const amts = document.querySelectorAll(".sAmount");
+        let val = 0;
+
+        for (const amt of amts) {
+            const temp = amt.textContent;
+            val += (isNaN(parseFloat(temp))) ? 0 : parseFloat(temp);
+        }
+
+        totalAmount.textContent = val.toFixed(2);
     });
     
-    
-    const totalAmount = document.querySelector("#totalAmount");
-    const amts = document.querySelectorAll(".sAmount");
-    let val = 0;
+    async function sendModifyRequest(url, config) {
+        const response = await fetch(url, config);
+        const data = await response.json();
 
-    for (const amt of amts) {
-        const temp = amt.textContent;
-        val += (isNaN(parseFloat(temp))) ? 0 : parseFloat(temp);
+        if (data.error) {
+            alert(data.error);
+        } else if (data.msg) {
+            console.log(data.msg);
+            location.reload();
+        }
     }
 
-    totalAmount.textContent = val;
+    function edit(row) { 
+        const _id = row.querySelector("span").textContent;
+        const date = row.querySelector(".sDate").textContent.slice(0, 16);
+        const amount = row.querySelector(".sAmount").textContent;
+        const notes = row.querySelector(".sNotes").textContent;
+        let name = row.querySelector(".sName");
+        name = (name) ? name.textContent : "{{slug}}";
+
+        const url = "/api/edit-spending";
+        const config = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({_id, date, amount, notes, name})
+        };
+
+        sendModifyRequest(url, config);
+    }
+
+    function sDelete(row) {
+        const _id = row.querySelector("span").textContent;
+        let name = row.querySelector(".sName");
+        name = (name) ? name.textContent : "{{slug}}";
+
+        const url = "/api/delete-spending";
+        const config = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({_id, name})
+        };
+
+        sendModifyRequest(url, config);
+    }
+
+
+    
+
 </script>

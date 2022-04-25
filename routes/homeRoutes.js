@@ -38,7 +38,7 @@ router.get("/category/:slug", async (req, res) => {
                     spendings.push(obj);
                 }
             }
-            res.render("category", {slug, spendings, isAll: true, types: req.user.categories});
+            res.render("category", {slug, spendings, isAll: true});
         } else {
             res.redirect("/home");
         }
@@ -75,9 +75,9 @@ router.get("/create-category", (req, res) => {
 router.post("/create-category", async (req, res) => {
     const username = req.user.username;
     const toAdd = req.body.name;
-    const user = await User.findOne({username});
-    if (user && toAdd.trim()) {
-        const categories = user.categories;
+    // const user = await User.findOne({username});
+    if (toAdd.trim()) {
+        const categories = req.user.categories;
         const has = categories.reduce((prev, curr) => {
             prev = prev || (curr.toLowerCase() === toAdd.toLowerCase());
             return prev;
@@ -86,11 +86,14 @@ router.post("/create-category", async (req, res) => {
         if (has) {
             res.render("create-category", {error: "Name Already Existed"});    
         } else {
-            await new Category({user: user["_id"], name: toAdd}).save();
-            user.categories.push(toAdd);
-            req.user.categories = user.categories;
-            await user.save();
-            res.redirect("/home");
+            try {
+                await new Category({user: req.user.id, name: toAdd}).save();
+                req.user.categories.push(toAdd);
+                res.redirect("/home");
+            } catch (e) {
+                res.render("create-category", {error: "Name Already Existed"});
+            }
+            
         }
         
     } else {
@@ -102,11 +105,10 @@ router.post("/change-category", async (req, res) => {
     const oldName = req.body.oldName;
     const newName = req.body.newName;
 
-    if (!oldName || !newName) {
+    if (!oldName.trim() || !newName.trim() || !req.user.categories.includes(oldName)) {
         res.render("create-category", {error: "Invalid Information"});
     } else {
-        // const [oldName, newName] = req.body;
-        // console.log(oldName, newName);
+        const oldCategory = await Category.find({user: req.user.id});
         res.redirect("/home");
     }
 

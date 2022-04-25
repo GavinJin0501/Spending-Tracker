@@ -23,7 +23,7 @@
                 <div class="form-group mb-2">
                     <label for="category">Category:</label>
                     <select name="category" id="category" class="form-control-plaintext" required>
-                        {{#each types}}
+                        {{#each user.categories}}
                             <option value="{{this}}">{{this}}</option>
                         {{/each}}
                     </select>

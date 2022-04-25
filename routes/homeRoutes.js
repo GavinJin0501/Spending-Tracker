@@ -6,6 +6,10 @@ const User = mongoose.model("User");
 const Category = mongoose.model("Category");
 const Spending = mongoose.model("Spending");
 
+function sliceDate(s) {
+    return s.slice(0, 10) + " " + s.slice(11);
+}
+
 router.get("/", (req, res) => {
     res.render("home");
 });
@@ -17,10 +21,19 @@ router.get("/category/:slug", async (req, res) => {
     } else {
         const {slug} = req.params;
         const filter = {user: req.user.id};
+        let {fromDate, toDate} = req.query;
+        fromDate = (fromDate) ? sliceDate(fromDate) : "";
+        toDate = (toDate) ? sliceDate(toDate) : "";
         if (req.user.categories.includes(slug)) {
             filter.name = slug;
             const cat = await Category.findOne(filter);
-            const spendings = cat.spendings;
+            const temp = cat.spendings;
+            const spendings = temp.reduce((acc, ch) => {
+                if (!((fromDate && ch.date < fromDate) || (toDate && ch.date > toDate))) {
+                    acc.push(ch);
+                }
+                return acc;
+            }, []);
             res.render("category", {slug, spendings, isAll: false});
         } else if (slug === "All") {
             const spendings = [];
@@ -29,13 +42,15 @@ router.get("/category/:slug", async (req, res) => {
                 const cat = await Category.findOne(filter);
                 const temp = cat.spendings;
                 for (const s of temp) {
-                    const obj = {};
-                    obj.date = s.date;
-                    obj.amount = s.amount;
-                    obj.notes = s.notes;
-                    obj["_id"] = s["_id"];
-                    obj.name = e;
-                    spendings.push(obj);
+                    if (!((fromDate && s.date < fromDate) || (toDate && s.date > toDate))) {
+                        const obj = {};
+                        obj.date = s.date;
+                        obj.amount = s.amount;
+                        obj.notes = s.notes;
+                        obj["_id"] = s["_id"];
+                        obj.name = e;
+                        spendings.push(obj);
+                    }
                 }
             }
             res.render("category", {slug, spendings, isAll: true});
@@ -50,7 +65,7 @@ router.post("/category/:slug", async (req, res) => {
     if (!req.isAuthenticated()) {
         res.redirect("/");
     } else {
-        req.body.date = req.body.date.slice(0, 10) + " " + req.body.date.slice(11);
+        req.body.date = sliceDate(req.body.date);
         const {slug} = req.params;
         const filter = {user: req.user.id, name: req.body.category};
         const newSpending = new Spending(req.body);
@@ -108,7 +123,7 @@ router.post("/change-category", async (req, res) => {
     const newName = req.body.newName;
     const user = await User.findOne({_id: req.user.id});
 
-    if (!user && !oldName.trim() || !newName.trim() || !req.user.categories.includes(oldName)) {
+    if (!user && !oldName.trim() || !newName.trim() || !user.categories.includes(oldName)) {
         res.render("create-category", {error: "Invalid Information"});
     } else {
         const oldCategory = await Category.findOne({user: req.user.id, name: oldName});

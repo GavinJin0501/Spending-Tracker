@@ -5,7 +5,7 @@
         <a href="/home/create-category" class="link-form">Create/Change a Caregory</a>
         <a href="/home/logout" class="link-form" onclick="event.preventDefault();document.getElementById('magic-form').submit();">Logout</a>
     </div>
-    <div id="form-wrapper" style="margin-top: 5vh; margin-bottom: 5vh;">
+    <div id="form-wrapper" style="margin-top: 3vh; margin-bottom: 3vh;">
         <form class="form-inline" method="POST" action="/home/category/{{slug}}">
             <div class="form-group mb-2">
                 <label for="date">Date:</label>
@@ -35,6 +35,19 @@
             <button type="submit" class="btn btn-primary mb-2">Create Spending</button>
         </form>
     </div>
+    <div style="display: flex; justify-content: center; margin-top: 3vh; margin-bottom: 3vh;">
+        <form class="form-inline" method="GET" action="/home/category/{{slug}}">
+            <div class="form-group mb-2">
+                <label for="fromDate">From Date:</label>
+                <input type="datetime-local" class="form-control-plaintext" name="fromDate" id="fromDate">
+            </div>
+            <div class="form-group mb-2 ">
+                <label for="toDate">To Date:</label>
+                <input type="datetime-local" class="form-control-plaintext" name="toDate" id="toDate">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Filter</button>
+        </form>
+    </div>
     <table class="table table-hover table-striped table-bordered" id="tb">
         <thead>
             <tr>
@@ -51,7 +64,7 @@
                 {{#each spendings}}
                     <tr>
                         <td>{{date}}<span style="display: none;">{{_id}}</span></td>
-                        <td>{{amount}}</td>
+                        <td class="sAmount">{{amount}}</td>
                         <td>{{notes}}</td>
                         <td>{{name}}</td>
                     </tr>
@@ -60,13 +73,15 @@
                 {{#each spendings}}
                     <tr>
                         <td>{{date}}<span style="display: none;">{{_id}}</span></td>
-                        <td>{{amount}}</td>
+                        <td class="sAmount">{{amount}}</td>
                         <td>{{notes}}</td>
                     </tr>
                 {{/each}}
             {{/if}}
         </tbody>
     </table>
+
+    <div style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 2.5vw; text-align: center;">Total amount of money spent: $<span id="totalAmount"></span></div>
 </div>
 <form id="magic-form" action="/home/logout" method="POST" style="display: none;"></form>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
@@ -76,4 +91,15 @@
         $('#tb').DataTable();
     });
     
+    
+    const totalAmount = document.querySelector("#totalAmount");
+    const amts = document.querySelectorAll(".sAmount");
+    let val = 0;
+
+    for (const amt of amts) {
+        const temp = amt.textContent;
+        val += (isNaN(parseFloat(temp))) ? 0 : parseFloat(temp);
+    }
+
+    totalAmount.textContent = val;
 </script>

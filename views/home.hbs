@@ -29,9 +29,10 @@
     const weatherDiv = document.querySelector("#weather");
     dateDiv.textContent = "Today is " + today;
     let iconUrl = "{{user.iconUrl}}";
+    let iconDes = "{{user.iconDes}}";
 
     if (iconUrl) {
-        addImgIcon(iconUrl);
+        addImgIcon(iconUrl, iconDes);
     } else if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(setPosition, showError);
     }    
@@ -52,17 +53,19 @@
 
         const response = await fetch(url, config);
         const data = await response.json();
-        const ans = data.iconUrl;
+        const ansUrl = data.iconUrl;
+        const ansDes = data.iconDes;
 
-        if (ans) {
-            addImgIcon(ans);
+        if (ansUrl) {
+            addImgIcon(ansUrl, ansDes);
         }
     }
 
-    function addImgIcon(url) {
+    function addImgIcon(url, des) {
         const img = document.createElement('img');
         img.style.width = "5vw";
         img.src = url;
+        img.title = des;
         weatherDiv.appendChild(img);
     }
 

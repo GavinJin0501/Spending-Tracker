@@ -18,10 +18,12 @@ router.post("/get-weather-icon", async (req, res) => {
     
     if (response.data) {
         iconUrl = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+        iconDes = response.data.weather[0].description
         req.user.iconUrl = iconUrl;
+        req.user.iconDes = iconDes;
     }
 
-    res.json({iconUrl});
+    res.json({iconUrl, iconDes});
 });
 
 

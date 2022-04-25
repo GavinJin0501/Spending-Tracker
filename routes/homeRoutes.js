@@ -75,9 +75,9 @@ router.get("/create-category", (req, res) => {
 router.post("/create-category", async (req, res) => {
     const username = req.user.username;
     const toAdd = req.body.name;
-    // const user = await User.findOne({username});
-    if (toAdd.trim()) {
-        const categories = req.user.categories;
+    const user = await User.findOne({username});
+    if (user && toAdd.trim()) {
+        const categories = user.categories;
         const has = categories.reduce((prev, curr) => {
             prev = prev || (curr.toLowerCase() === toAdd.toLowerCase());
             return prev;
@@ -87,8 +87,10 @@ router.post("/create-category", async (req, res) => {
             res.render("create-category", {error: "Name Already Existed"});    
         } else {
             try {
-                await new Category({user: req.user.id, name: toAdd}).save();
-                req.user.categories.push(toAdd);
+                await new Category({user: user["_id"], name: toAdd}).save();
+                user.categories.push(toAdd);
+                await user.save();
+                req.user.categories = user.categories;
                 res.redirect("/home");
             } catch (e) {
                 res.render("create-category", {error: "Name Already Existed"});
@@ -104,16 +106,23 @@ router.post("/create-category", async (req, res) => {
 router.post("/change-category", async (req, res) => {
     const oldName = req.body.oldName;
     const newName = req.body.newName;
+    const user = await User.findOne({_id: req.user.id});
 
-    if (!oldName.trim() || !newName.trim() || !req.user.categories.includes(oldName)) {
+    if (!user && !oldName.trim() || !newName.trim() || !req.user.categories.includes(oldName)) {
         res.render("create-category", {error: "Invalid Information"});
     } else {
-        const oldCategory = await Category.find({user: req.user.id});
-        res.redirect("/home");
+        const oldCategory = await Category.findOne({user: req.user.id, name: oldName});
+        if (oldCategory) {
+            oldCategory.name = newName;
+            await oldCategory.save();
+            user.categories[user.categories.indexOf(oldName)] = newName;
+            await user.save();
+            req.user.categories = user.categories;
+            res.redirect("/home");
+        } else {
+            res.render("create-category", {error: "Invalid Information"});
+        }
     }
-
-
-    
 });
 
 

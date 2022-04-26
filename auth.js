@@ -6,7 +6,8 @@ const argon2 = require("argon2");
 
 const User = mongoose.model("User");
 
-
+// reference:https://www.passportjs.org/tutorials/password/
+// implement passport authentication
 passport.use(new LocalStrategy(function verify(username, password, cb) {
     User.findOne({username: username}, async function(err, user) {
         if (err) {return cb(err);}
@@ -26,7 +27,6 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
 }));
 
 
-// reference: https://www.passportjs.org/tutorials/password/session/
 passport.serializeUser(function(user, cb) {
     process.nextTick(function() {
         cb(null, {username: user.username, categories: user.categories});

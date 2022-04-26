@@ -46,19 +46,23 @@ An Example Category with Embedded Spendings:
 
 ## Wireframes
 
-/home - page for showing all shopping catrgories
+/ -- page to let the user deicide: login / register
+![inedx](documentation/index.png)
 
+/login -- page to let the user login
+![login](documentation/login.png)
+
+/register -- page to let the user register
+![register](documentation/register.png)
+
+/home -- user's homepage, displaying the user's spending categories and showing use case options
+![home](documentation/home.png)
+
+/home/category/:slug -- page to display user's spendings in a specific category
 ![category](documentation/category.png)
 
-/home/slug - page for showing specific shopping category
-
-![category](documentation/category-slug.png)
-
-/home/create-category - page for creating a new spending category
-
-![category create](documentation/category-create.png)
-
-
+/home/create-category -- page to create a new category or change the name of an old category
+![create-category](documentation/create-category.png)
 
 ## Site map
 
@@ -77,7 +81,7 @@ An Example Category with Embedded Spendings:
 
 ## Research Topics
 
-* (3 points) Integrate user authentication
+* (4 points) Integrate user authentication
     * User authentication is the process of determining whehter or not users are who they claim to be
     * By using user authentication, the communication between client and server will be more secure, thus clients' privacy being protected
     * I'm going to be using passport for user authentication
@@ -94,7 +98,7 @@ An Example Category with Embedded Spendings:
     * By using API, I can achieve my goals (in this case, showing today's weather) more easily and more conconvenient.
     * I'm going to be using OpenWeather api to display today's the weather on my website.
 
-9 points total out of 8 required points
+10 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 

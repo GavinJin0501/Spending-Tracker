@@ -87,7 +87,7 @@
         </tbody>
     </table>
 
-    <div style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 2.5vw; text-align: center;">Total amount of money spent: $<span id="totalAmount"></span></div>
+    <div style="padding-top: 1vh; margin: 3vh 0 3vh 0; font-size: 2vw; text-align: center;">Total amount of money spent: $<span id="totalAmount"></span></div>
 </div>
 <form id="magic-form" action="/home/logout" method="POST" style="display: none;"></form>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
@@ -115,8 +115,8 @@
             alert(data.error);
         } else if (data.msg) {
             console.log(data.msg);
-            location.reload();
         }
+        location.reload();
     }
 
     function edit(row) { 

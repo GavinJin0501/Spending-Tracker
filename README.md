@@ -81,19 +81,19 @@ An Example Category with Embedded Spendings:
 
 ## Research Topics
 
-* (4 points) Integrate user authentication
+* Integrate user authentication
     * User authentication is the process of determining whehter or not users are who they claim to be
     * By using user authentication, the communication between client and server will be more secure, thus clients' privacy being protected
     * I'm going to be using passport for user authentication
-* (3 points) Deploy the applicaiton using Heroku + Mongodb Altas
+* Deploy the applicaiton using Heroku + Mongodb Altas
     * Deployment is to keep running an app on a server so that it can be used by more users
     * By deploying with Heroku and Mongodb Altas, this project will survive after the course unlike the courant server, and I may keep working on it
     * I'm going to be using Heroku and Mongodb Altas
-* (2 points) Using Bootstrap CSS
+* Using Bootstrap CSS
     * CSS is a crucial part for a website design
     * Bootstrap CSS is lightweight and customized, making the elements on my websites more organizable
     * I'm going to be using Bootstrap
-* (1 point) External API -- OpenWeather API
+* External API -- OpenWeather API
     * API -- application programming interface, is a connection between computers or computer programs.
     * By using API, I can achieve my goals (in this case, showing today's weather) more easily and more conconvenient.
     * I'm going to be using OpenWeather api to display today's the weather on my website.
